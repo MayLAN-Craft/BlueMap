@@ -1,11 +1,6 @@
 <template>
   <SvgButton class="compass" @action="action">
-    <svg viewBox="0 0 30 30" :style="style">
-      <path class="north" d="M14.792,1.04c0.114-0.354,0.299-0.354,0.412,0l4.089,12.729c0.114,0.353-0.097,0.642-0.468,0.642
-        l-7.651,0.001c-0.371,0-0.581-0.288-0.468-0.642L14.792,1.04z"/>
-      <path class="south" d="M10.707,16.23c-0.114-0.353,0.097-0.642,0.468-0.642l7.651-0.001c0.371,0,0.581,0.289,0.468,0.642
-        l-4.086,12.73c-0.113,0.353-0.299,0.353-0.412,0L10.707,16.23z"/>
-    </svg>
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" :style="style"><path class="north" d="M7 1h2v1h-2zM7 2h2v1h-2zM6 3h4v1h-4zM6 4h4v1h-4zM5 5h6v1h-6zM5 6h6v1h-6zM4 7h8v1h-8z"/><path class="south" d="M4 9h8v1h-8zM5 10h6v1h-6zM5 11h6v1h-6zM6 12h4v1h-4zM6 13h4v1h-4zM7 14h2v1h-2zM7 15h2v1h-2z"/></svg>
   </SvgButton>
 </template>
 
@@ -46,26 +41,14 @@
 <style lang="scss">
   .compass {
     svg {
-      height: 1.8em;
+      height: 1.6em;
 
       .north {
-        fill: var(--theme-fg);
+        fill: #e2483b;
       }
 
       .south {
-        fill: var(--theme-fg-light);
-      }
-    }
-
-    &:active {
-      svg {
-        .north {
-          fill: var(--theme-bg);
-        }
-
-        .south {
-          fill: var(--theme-bg-light);
-        }
+        fill: var(--theme-fg);
       }
     }
   }

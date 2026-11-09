@@ -70,13 +70,14 @@ export default {
 
     tr {
       th, td {
-        padding: 0.2em 0.5em;
-        border: solid 1px var(--theme-bg-light);
+        padding: 0.3em 0.5em;
+        border: solid 2px var(--ore-border);
       }
 
       th {
         font-weight: inherit;
         text-align: inherit;
+        background-color: var(--ore-header);
       }
     }
   }

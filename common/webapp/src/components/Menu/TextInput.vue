@@ -12,9 +12,22 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
 .side-menu .text-input {
-  background-color: var(--theme-bg-hover);
-  width: calc(100% - 1em);
+  @include ore-field;
+
+  width: calc(100% - 1em - #{$ore-border-width * 2});
   padding: 0.5em;
+  margin: 0 0 0.5em 0;
+
+  &::placeholder {
+    color: var(--theme-fg-light);
+    opacity: 1;
+  }
+
+  &:focus {
+    border-color: var(--ore-accent);
+  }
 }
 </style>

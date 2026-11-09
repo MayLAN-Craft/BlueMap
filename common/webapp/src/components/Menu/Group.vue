@@ -17,28 +17,36 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
 .side-menu .group {
   position: relative;
-  margin: 2em 0 1em;
-  padding-top: 1em;
-  border: solid 2px var(--theme-bg-hover);
+  margin: 1em 0;
 
+  background-color: var(--ore-group);
+  border: solid $ore-border-width var(--ore-border);
 
   > .title {
-    position: absolute;
-    top: calc(-0.5em - 1px);
-    right: 0.5em;
-    padding: 0 0.5em;
-    background-color: var(--theme-bg);
+    display: block;
+    padding: 0.4em 0.5em;
+
+    color: var(--theme-fg-light);
+    background-color: var(--ore-header);
+    border-bottom: solid $ore-border-width var(--ore-border);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &:first-child {
-    margin-top: 1em;
+    margin-top: 0;
   }
 
   > .content {
     max-height: 15em;
     overflow-y: auto;
+    padding: 0.5em 0.5em calc(0.5em - 4px) 0.5em;
   }
 }
 </style>

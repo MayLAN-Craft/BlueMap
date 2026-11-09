@@ -14,46 +14,42 @@
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
 .svg-button {
   position: relative;
   pointer-events: auto;
   overflow: hidden;
-  cursor: pointer;
 
+  box-sizing: border-box;
   min-width: 2em;
   min-height: 2em;
 
-  background-color: var(--theme-bg);
-  color: var(--theme-fg);
-
-  &:hover {
-    background-color: var(--theme-bg-hover);
-  }
+  @include ore-button;
 
   &.active {
-    background-color: var(--theme-bg-light);
-  }
+    @include ore-button-accent;
 
-  &:active {
-    background-color: var(--theme-fg-light);
-    color: var(--theme-bg);
+    svg {
+      fill: var(--ore-accent-fg);
+    }
   }
 
   svg {
     position: absolute;
-    top: 50%;
+    top: calc(50% - #{$ore-strip * 0.5});
     left: 50%;
     transform: translate(-50%, -50%);
 
-    height: 1.8em;
+    height: 1.6em;
 
-    fill: var(--theme-fg-light);
+    fill: var(--theme-fg);
+    shape-rendering: crispEdges;
   }
 
-  &:active {
-    svg {
-      fill: var(--theme-bg-light);
-    }
+  // pressed: the icon sinks down with the button face
+  &:active svg {
+    top: 50%;
   }
 }
 </style>

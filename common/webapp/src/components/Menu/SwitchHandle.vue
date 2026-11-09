@@ -12,36 +12,62 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
+// Ore UI toggle: rectangular sunken track with a raised square knob
 .side-menu .switch {
-  height: 1em;
-  width: 2em;
+  $w: 2.4em;
+  $h: 1.1em;
 
-  border-radius: 1em;
-  background-color: var(--theme-bg-light);
+  position: relative;
+  flex-shrink: 0;
 
-  transition: background-color 0.3s;
+  width: $w;
+  height: $h;
+
+  background-color: var(--ore-field);
+  border: solid $ore-border-width var(--ore-border);
+
+  transition: background-color 0.15s;
+
+  // "on" tick mark on the left side of the track
+  &::before {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 0.45em;
+    width: $ore-border-width;
+    height: 50%;
+    background-color: var(--ore-accent-fg);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
 
   &::after {
     content: "";
-    display: block;
-    width: 0.75em;
-    height: 0.75em;
-    border-radius: 100%;
+    position: absolute;
+    top: -$ore-border-width;
+    left: -$ore-border-width;
 
-    background-color: var(--theme-bg);
+    width: $h;
+    height: $h;
 
-    position: relative;
-    top: 0.125em;
-    left: 0.125em;
+    background-color: var(--ore-btn);
+    border: solid $ore-border-width var(--ore-border);
+    box-shadow: inset 0 -3px 0 var(--ore-btn-strip), inset 0 $ore-border-width 0 var(--ore-bevel);
 
-    transition: left 0.3s;
+    transition: left 0.15s;
   }
 
   &.on {
-    background-color: var(--theme-switch-button-on);
+    background-color: var(--ore-accent);
+
+    &::before {
+      opacity: 1;
+    }
 
     &::after {
-      left: 1.125em;
+      left: calc(#{$w - $h} - #{$ore-border-width});
     }
   }
 }

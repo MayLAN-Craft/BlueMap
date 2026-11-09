@@ -33,7 +33,7 @@
       width: 100%;
 
       &:not(:first-child) {
-        border-left: solid 1px var(--theme-bg-light);
+        margin-left: -2px;
       }
     }
   }

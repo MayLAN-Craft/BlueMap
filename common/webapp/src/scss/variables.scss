@@ -26,66 +26,181 @@
 // responsive breaks
 $mobile-break: 575.98px;
 
+// Ore UI base font stack (Monocraft is a free, OFL-licensed Minecraft-style font)
+$ore-font: 'Monocraft', 'Noto Sans', system-ui, sans-serif;
+
+// Ore UI building blocks
+$ore-border-width: 2px;
+$ore-strip: 4px; // height of the darker "step" at the bottom of raised elements
+
 // themes
+// The --theme-* variables are kept for compatibility (markers, addons),
+// the --ore-* variables describe the Ore UI surfaces.
 @mixin dark-theme {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 16px;
+  font-family: $ore-font;
+  font-size: 20px;
   font-weight: 400;
 
-  --theme-bg: #181818;
-  --theme-bg-hover: #222;
-  --theme-bg-light: #444;
-  --theme-fg: #fff;
-  --theme-fg-light: #aaa;
+  --theme-bg: #313233;
+  --theme-bg-hover: #3c3d3e;
+  --theme-bg-light: #58595a;
+  --theme-fg: #ffffff;
+  --theme-fg-light: #b1b2b5;
+
+  --ore-border: #1e1e1f;
+  --ore-header: #48494a;
+  --ore-group: #2a2b2c;
+  --ore-field: #1e1e1f;
+  --ore-btn: #48494a;
+  --ore-btn-hover: #58595a;
+  --ore-btn-strip: #313233;
+  --ore-btn-pressed: #3c3d3e;
+  --ore-bevel: rgba(255, 255, 255, 0.12);
+  --ore-accent: #3c8527;
+  --ore-accent-hover: #4a9a32;
+  --ore-accent-strip: #1d4d13;
+  --ore-accent-fg: #ffffff;
+  --ore-shadow: rgba(0, 0, 0, 0.45);
 
   //SwitchButton
-  --theme-switch-button-on: #00489d;
+  --theme-switch-button-on: var(--ore-accent);
 
   //DayNightSwitch
   --theme-stars-day: #fff;
-  --theme-moon-day: #ff0;
-  --theme-stars-night: #444;
-  --theme-moon-night: #000;
+  --theme-moon-day: #ffd83d;
+  --theme-stars-night: #fff;
+  --theme-moon-night: #ffd83d;
 }
 
 @mixin light-theme {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
+  font-family: $ore-font;
+  font-size: 20px;
+  font-weight: 400;
 
-  --theme-bg: #eee;
-  --theme-bg-hover: #ddd;
-  --theme-bg-light: #999;
-  --theme-fg: #000;
-  --theme-fg-light: #333;
+  --theme-bg: #e6e8eb;
+  --theme-bg-hover: #d0d1d4;
+  --theme-bg-light: #8c8d90;
+  --theme-fg: #1e1e1f;
+  --theme-fg-light: #48494a;
+
+  --ore-border: #1e1e1f;
+  --ore-header: #d0d1d4;
+  --ore-group: #f4f6f9;
+  --ore-field: #ffffff;
+  --ore-btn: #d0d1d4;
+  --ore-btn-hover: #e6e8eb;
+  --ore-btn-strip: #8c8d90;
+  --ore-btn-pressed: #b1b2b5;
+  --ore-bevel: rgba(255, 255, 255, 0.6);
+  --ore-accent: #3c8527;
+  --ore-accent-hover: #4a9a32;
+  --ore-accent-strip: #1d4d13;
+  --ore-accent-fg: #ffffff;
+  --ore-shadow: rgba(0, 0, 0, 0.3);
 
   //SwitchButton
-  --theme-switch-button-on: #6593dc;
+  --theme-switch-button-on: var(--ore-accent);
 
   //DayNightSwitch
-  --theme-stars-day: #444;
-  --theme-moon-day: #000;
+  --theme-stars-day: #48494a;
+  --theme-moon-day: #1e1e1f;
   --theme-stars-night: #fff;
-  --theme-moon-night: #ff0;
+  --theme-moon-night: #ffd83d;
 }
 
 @mixin contrast-theme {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 16px;
+  font-family: $ore-font;
+  font-size: 20px;
   font-weight: 400;
 
-  --theme-bg: #000;
-  --theme-bg-hover: #222;
-  --theme-bg-light: #666;
-  --theme-fg: #fff;
-  --theme-fg-light: #aaa;
+  --theme-bg: #000000;
+  --theme-bg-hover: #1e1e1f;
+  --theme-bg-light: #8c8d90;
+  --theme-fg: #ffffff;
+  --theme-fg-light: #e6e8eb;
+
+  --ore-border: #ffffff;
+  --ore-header: #000000;
+  --ore-group: #000000;
+  --ore-field: #000000;
+  --ore-btn: #1e1e1f;
+  --ore-btn-hover: #313233;
+  --ore-btn-strip: #000000;
+  --ore-btn-pressed: #000000;
+  --ore-bevel: rgba(255, 255, 255, 0.2);
+  --ore-accent: #52c22e;
+  --ore-accent-hover: #6bd94a;
+  --ore-accent-strip: #1d4d13;
+  --ore-accent-fg: #000000;
+  --ore-shadow: rgba(0, 0, 0, 0.8);
 
   //SwitchButton
-  --theme-switch-button-on: #006fff;
+  --theme-switch-button-on: var(--ore-accent);
 
   //DayNightSwitch
   --theme-stars-day: #fff;
-  --theme-moon-day: #ff0;
-  --theme-stars-night: #444;
+  --theme-moon-day: #ffff00;
+  --theme-stars-night: #000;
   --theme-moon-night: #000;
+}
+
+// ### Ore UI mixins ###
+
+// hard, offset drop shadow used by floating panels
+@mixin ore-drop-shadow {
+  filter: drop-shadow(3px 3px 0 var(--ore-shadow));
+}
+
+// flat panel with dark outline
+@mixin ore-panel {
+  background-color: var(--theme-bg);
+  color: var(--theme-fg);
+  border: solid $ore-border-width var(--ore-border);
+  border-radius: 0;
+}
+
+// sunken input field
+@mixin ore-field {
+  background-color: var(--ore-field);
+  color: var(--theme-fg);
+  border: solid $ore-border-width var(--ore-border);
+  border-radius: 0;
+  box-shadow: inset 0 $ore-border-width 0 rgba(0, 0, 0, 0.35);
+}
+
+// raised button with the darker step at the bottom
+@mixin ore-button {
+  cursor: pointer;
+  user-select: none;
+
+  background-color: var(--ore-btn);
+  color: var(--theme-fg);
+  border: solid $ore-border-width var(--ore-border);
+  border-radius: 0;
+  box-shadow: inset 0 (-$ore-strip) 0 var(--ore-btn-strip), inset 0 $ore-border-width 0 var(--ore-bevel);
+
+  &:hover {
+    background-color: var(--ore-btn-hover);
+  }
+
+  &:active {
+    background-color: var(--ore-btn-pressed);
+    box-shadow: inset 0 $ore-border-width 0 rgba(0, 0, 0, 0.25);
+  }
+}
+
+// green (primary / selected) variant of the ore-button
+@mixin ore-button-accent {
+  background-color: var(--ore-accent);
+  color: var(--ore-accent-fg);
+  box-shadow: inset 0 (-$ore-strip) 0 var(--ore-accent-strip), inset 0 $ore-border-width 0 rgba(255, 255, 255, 0.25);
+
+  &:hover {
+    background-color: var(--ore-accent-hover);
+  }
+
+  &:active {
+    background-color: var(--ore-accent-strip);
+    box-shadow: inset 0 $ore-border-width 0 rgba(0, 0, 0, 0.25);
+  }
 }

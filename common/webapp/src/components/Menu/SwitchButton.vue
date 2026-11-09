@@ -17,14 +17,20 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
 
 .side-menu .switch-button {
   cursor: pointer;
   user-select: none;
   display: flex;
+  align-items: center;
+  gap: 0.5em;
   line-height: 2em;
 
-  padding: 0 0.5em;
+  margin: 0 0 4px 0;
+  padding: 0.1em 0.5em;
+
+  border: solid $ore-border-width transparent;
 
   > .label {
     flex-grow: 1;
@@ -34,13 +40,9 @@ export default {
     text-overflow: ellipsis;
   }
 
-  > .switch {
-    margin: 0.5em 0;
-  }
-
   &:hover {
     background-color: var(--theme-bg-hover);
+    border-color: var(--ore-border);
   }
 }
-
 </style>

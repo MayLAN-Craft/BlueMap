@@ -28,23 +28,25 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
   .choice-box {
     display: flex;
 
     font-size: 0.8em;
     text-align: center;
-    //margin-bottom: 0.5em;
+    margin: 0 0 0.5em 0;
 
-    border: solid 2px var(--theme-bg-hover);
-    //border-radius: 1em;
+    border: solid $ore-border-width var(--ore-border);
     overflow: hidden;
 
     .title, .choice {
-      padding: 0.3em 0.5em;
+      padding: 0.4em 0.5em calc(0.4em + 3px) 0.5em;
     }
 
     .title {
-      background-color: var(--theme-bg-hover);
+      background-color: var(--ore-header);
+      border-right: solid $ore-border-width var(--ore-border);
     }
 
     .choices {
@@ -57,12 +59,21 @@ export default {
         cursor: pointer;
         user-select: none;
 
-        background-color: var(--theme-bg);
-        &:hover {
-          background-color: var(--theme-bg-hover);
+        background-color: var(--ore-btn);
+        box-shadow: inset 0 -3px 0 var(--ore-btn-strip), inset 0 $ore-border-width 0 var(--ore-bevel);
+
+        &:not(:first-child) {
+          border-left: solid $ore-border-width var(--ore-border);
         }
+
+        &:hover {
+          background-color: var(--ore-btn-hover);
+        }
+
         &.selected {
-          background-color: var(--theme-bg-light);
+          background-color: var(--ore-accent);
+          color: var(--ore-accent-fg);
+          box-shadow: inset 0 -3px 0 var(--ore-accent-strip), inset 0 $ore-border-width 0 rgba(255, 255, 255, 0.25);
         }
       }
     }

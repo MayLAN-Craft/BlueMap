@@ -56,7 +56,7 @@ export default {
 
     font-size: 1rem;
     @media (max-width: $mobile-break) {
-      font-size: 1.5rem;
+      font-size: 1.2rem; // 24px: base is 20px, larger would overflow the control bar on phones
     }
 
     .map-state-message {

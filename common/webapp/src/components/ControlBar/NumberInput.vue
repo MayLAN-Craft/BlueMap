@@ -29,28 +29,37 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
   .number-input {
     pointer-events: auto;
+    box-sizing: border-box;
 
-    background-color: var(--theme-bg);
-    color: var(--theme-fg);
+    @include ore-field;
 
     min-height: 2em;
+    line-height: calc(2em - #{$ore-border-width * 2});
+
+    label {
+      display: flex;
+      height: 100%;
+    }
 
     .label {
-      display: inline-block;
-      width: 1em;
-      padding: 0 0.5em 0 0.5em;
+      flex-shrink: 0;
+      padding: 0 0.25em 0 0.5em;
 
-      color: var(--theme-fg-light);
+      color: var(--ore-accent-hover);
     }
 
     input {
+      flex-grow: 1;
+      min-width: 0;
       height: 100%;
-      line-height: 100%;
-      width: calc(100% - 2em);
+      line-height: inherit;
+      width: 100%;
 
-      background-color: inherit;
+      background-color: transparent;
       color: inherit;
 
       // remove number spinner firefox
@@ -62,6 +71,10 @@ export default {
         -webkit-appearance: none;
         margin: 0;
       }
+    }
+
+    &:focus-within {
+      border-color: var(--ore-accent);
     }
   }
 </style>

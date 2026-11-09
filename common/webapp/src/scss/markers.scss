@@ -41,7 +41,7 @@
     .bm-marker-poi-icon {
       opacity: 1;
       transition: opacity 0.3s;
-      filter: drop-shadow(1px 1px 3px #0008);
+      @include ore-drop-shadow;
     }
 
     &.bm-marker-highlight {
@@ -60,27 +60,36 @@
   .bm-marker-popup {
     transform: translate(-50%, -100%) translate(0, -0.5em);
 
+    width: max-content;
     max-width: 15em;
 
-    color: var(--theme-fg);
-    background-color: var(--theme-bg);
-    filter: drop-shadow(1px 1px 3px #0008);
+    @include ore-panel;
+    @include ore-drop-shadow;
     padding: 0.5em;
 
     > hr {
       border: none;
-      border-bottom: solid 1px var(--theme-bg-light);
+      border-bottom: solid $ore-border-width var(--ore-border);
       margin: 0.5em -0.5em;
     }
 
-    &:after {
+    // pointer: outline triangle (before) + fill triangle (after)
+    &:before, &:after {
       position: absolute;
-      bottom: calc(-1em + 1px);
       left: 50%;
       transform: translate(-50%, 0);
 
       content: '';
       border: solid 0.5em transparent;
+    }
+
+    &:before {
+      bottom: calc(-1em - #{$ore-border-width} - 1px);
+      border-top-color: var(--ore-border);
+    }
+
+    &:after {
+      bottom: calc(-1em + #{$ore-border-width});
       border-top-color: var(--theme-bg);
     }
   }
@@ -112,16 +121,20 @@
 
           content: attr(data-tooltip);
 
-          background: var(--theme-bg);
+          @include ore-panel;
           color: var(--theme-fg-light);
-          filter: drop-shadow(1px 1px 3px #0008);
           font-size: 0.75em;
           line-height: 1em;
           padding: .5em;
+          white-space: nowrap;
+        }
+
+        &:hover {
+          background-color: var(--theme-bg-hover);
         }
 
         &:active {
-          background-color: var(--theme-bg-light);
+          background-color: var(--ore-btn-pressed);
         }
 
       }
@@ -160,7 +173,7 @@
   .bm-marker-player {
     position: relative;
     transform: translate(-50%, -50%);
-    filter: drop-shadow(1px 1px 3px #0008);
+    @include ore-drop-shadow;
 
     img {
       width: 32px;
@@ -175,9 +188,11 @@
       left: 50%;
       transform: translate(-50%, -100%);
 
-      padding: 0.25em;
-      background-color: #0008;
+      padding: 0.25em 0.4em;
+      background-color: rgba(0, 0, 0, 0.55);
       color: #fff;
+      font-family: $ore-font;
+      white-space: nowrap;
 
       transition: opacity 0.3s;
     }

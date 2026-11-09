@@ -18,14 +18,7 @@
     </div>
     <div class="follow-player-button" :class="{active: controls.controls.followingPlayer && controls.controls.followingPlayer.id === marker.id}"
          v-if="marker.type === 'player'" @click="click(true)" :title="$t('markers.followPlayerTitle')">
-      <svg viewBox="0 0 30 30">
-        <circle fill="none" stroke-width="3" stroke-miterlimit="10" cx="15" cy="15" r="10.375"/>
-        <line fill="none" stroke-width="3" stroke-miterlimit="10" x1="3.25" y1="15" x2="1.063" y2="15"/>
-        <line fill="none" stroke-width="3" stroke-miterlimit="10" x1="15" y1="26.75" x2="15" y2="28.938"/>
-        <line fill="none" stroke-width="3" stroke-miterlimit="10" x1="26.75" y1="15" x2="28.938" y2="15"/>
-        <line fill="none" stroke-width="3" stroke-miterlimit="10" x1="15" y1="3.25" x2="15" y2="1.063"/>
-        <circle stroke="none" cx="15" cy="15" r="6.042"/>
-      </svg>
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M7 0h2v1h-2zM7 1h2v1h-2zM5 2h6v1h-6zM4 3h2v1h-2zM10 3h2v1h-2zM3 4h2v1h-2zM11 4h2v1h-2zM2 5h2v1h-2zM12 5h2v1h-2zM2 6h1v1h-1zM7 6h2v1h-2zM13 6h1v1h-1zM0 7h3v1h-3zM6 7h4v1h-4zM13 7h3v1h-3zM0 8h3v1h-3zM6 8h4v1h-4zM13 8h3v1h-3zM2 9h1v1h-1zM7 9h2v1h-2zM13 9h1v1h-1zM2 10h2v1h-2zM12 10h2v1h-2zM3 11h2v1h-2zM11 11h2v1h-2zM4 12h2v1h-2zM10 12h2v1h-2zM5 13h6v1h-6zM7 14h2v1h-2zM7 15h2v1h-2z"/></svg>
     </div>
   </div>
 </template>
@@ -108,17 +101,9 @@ export default {
   white-space: nowrap;
   user-select: none;
 
-  line-height: 1em;
+  line-height: 1.2em;
 
-  margin: 0.5em 0;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  margin: 0 0 4px 0;
 
   &.marker-hidden {
     opacity: 0.5;
@@ -128,19 +113,20 @@ export default {
   .marker-button {
     display: flex;
     flex-grow: 1;
-    cursor: pointer;
+    min-width: 0;
 
-    &:hover {
-      background-color: var(--theme-bg-hover);
-    }
+    padding-bottom: $ore-strip;
+
+    @include ore-button;
 
     > .info {
       flex-grow: 1;
-      text-overflow: ellipsis;
+      min-width: 0;
 
       padding: 0.5em;
 
       .label {
+        overflow: hidden;
         text-overflow: ellipsis;
       }
 
@@ -153,7 +139,7 @@ export default {
           &:not(:first-child) {
             margin-left: 0.5em;
             padding-left: 0.5em;
-            border-left: solid 1px var(--theme-bg-hover);
+            border-left: solid $ore-border-width var(--ore-border);
           }
         }
       }
@@ -161,42 +147,42 @@ export default {
 
     > .icon {
       height: 2.5em;
-      margin: 0.5em;
+      margin: 0.5em 0 0.5em 0.5em;
       flex-shrink: 0;
 
       img {
         image-rendering: pixelated;
         height: 100%;
+        box-sizing: border-box;
+        border: solid $ore-border-width var(--ore-border);
       }
     }
   }
 
   > .follow-player-button {
+    position: relative;
     width: 2em;
-    cursor: pointer;
-    background-color: var(--theme-bg);
+    flex-shrink: 0;
+    margin-left: -$ore-border-width;
 
-    &:hover, &.active {
-      background-color: var(--theme-bg-light);
+    @include ore-button;
+
+    &.active {
+      @include ore-button-accent;
+
+      > svg {
+        fill: var(--ore-accent-fg);
+      }
     }
 
     > svg {
-      position: relative;
-      fill: var(--theme-fg-light);
-      stroke: var(--theme-fg-light);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      fill: var(--theme-fg);
 
-      top: 50%;
+      top: calc(50% - #{$ore-strip * 0.5});
       transform: translate(0, -50%) scale(0.75);
-    }
-
-    &:active {
-      background-color: var(--theme-fg-light);
-      color: var(--theme-bg);
-
-      > svg {
-        fill: var(--theme-bg-light);
-        stroke: var(--theme-bg-light);
-      }
     }
   }
 }

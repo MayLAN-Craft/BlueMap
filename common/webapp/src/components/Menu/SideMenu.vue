@@ -56,21 +56,24 @@ export default {
 
   pointer-events: auto;
 
+  box-sizing: border-box;
   width: 100%;
-  max-width: 20em;
+  max-width: 22em;
   height: 100%;
 
-  filter: drop-shadow(1px 1px 3px #0008);
+  @include ore-drop-shadow;
 
   background-color: var(--theme-bg);
   color: var(--theme-fg);
+  border-right: solid $ore-border-width var(--ore-border);
 
   &-enter-active, &-leave-active {
-    transition: opacity 0.3s;
+    transition: opacity 0.2s, transform 0.2s;
   }
 
-  &-enter, &-leave-to {
+  &-enter-from, &-leave-to {
     opacity: 0;
+    transform: translateX(-1em);
     pointer-events: none;
 
     * {
@@ -99,32 +102,40 @@ export default {
     line-height: 2em;
     text-align: center;
 
-    background-color: inherit;
-    border-bottom: solid 1px var(--theme-bg-hover);
+    background-color: var(--ore-header);
+    border-bottom: solid $ore-border-width var(--ore-border);
+    box-shadow: inset 0 $ore-border-width 0 var(--ore-bevel);
 
-    padding: 0.5em;
+    padding: 0.5em 3em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     @media (max-width: $mobile-break) {
-      padding: 0;
+      padding: 0 2.5em;
     }
   }
 
   > .content {
     position: relative;
+    box-sizing: border-box;
 
     overflow-y: auto;
     overflow-x: hidden;
 
     padding: 0.5em;
 
-    height: calc(100% - 4em - 1px);
+    height: calc(100% - 3em - #{$ore-border-width});
     @media (max-width: $mobile-break) {
-      height: calc(100% - 3em - 1px);
+      height: calc(100% - 2em - #{$ore-border-width});
     }
+
+    font-size: 0.9em;
 
     hr {
       border: none;
-      border-bottom: solid 2px var(--theme-bg-hover);
-      margin: 0.5em 0;
+      border-bottom: solid $ore-border-width var(--ore-border);
+      margin: 0.75em 0;
     }
   }
 }

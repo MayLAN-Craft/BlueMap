@@ -31,34 +31,44 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
 .side-menu .map-button {
   position: relative;
-  cursor: pointer;
-  user-select: none;
+  display: flex;
+  align-items: center;
 
   height: 2em;
   line-height: 2em;
 
-  white-space: nowrap;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
+  margin: 0 0 4px 0;
+  padding: 0 0.5em $ore-strip 0.5em;
+
+  @include ore-button;
 
   &.selected {
-    background-color: var(--theme-bg-light);
-  }
-
-  &:hover {
-    background-color: var(--theme-bg-hover);
+    @include ore-button-accent;
   }
 
   .sky {
-    float: left;
-    border-radius: 100%;
+    flex-shrink: 0;
 
-    width: 0.5em;
-    height: 0.5em;
+    // render the sky-color as a little pixel square (bullet text is hidden)
+    width: 0.6em;
+    height: 0.6em;
+    overflow: hidden;
+    text-indent: 2em;
+    white-space: nowrap;
+    background-color: currentColor;
+    border: solid $ore-border-width var(--ore-border);
 
-    margin: 0 0.25em 0 0.5em;
+    margin: 0 0.6em 0 0.1em;
+  }
+
+  .name {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
 
   .id {

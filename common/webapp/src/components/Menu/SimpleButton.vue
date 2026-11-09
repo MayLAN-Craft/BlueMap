@@ -2,12 +2,7 @@
 <div class="simple-button" :class="{active: active}" @click="$emit('action')">
   <div class="label"><slot /></div>
   <div class="submenu-icon" v-if="submenu">
-    <svg viewBox="0 0 30 30">
-      <path d="M25.004,9.294c0,0.806-0.75,1.46-1.676,1.46H6.671c-0.925,0-1.674-0.654-1.674-1.46l0,0
-	c0-0.807,0.749-1.461,1.674-1.461h16.657C24.254,7.833,25.004,8.487,25.004,9.294L25.004,9.294z"/>
-      <path d="M25.004,20.706c0,0.807-0.75,1.461-1.676,1.461H6.671c-0.925,0-1.674-0.654-1.674-1.461l0,0
-	c0-0.807,0.749-1.461,1.674-1.461h16.657C24.254,19.245,25.004,19.899,25.004,20.706L25.004,20.706z"/>
-    </svg>
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M5 2h2v1h-2zM5 3h3v1h-3zM6 4h3v1h-3zM7 5h3v1h-3zM8 6h3v1h-3zM9 7h3v1h-3zM9 8h3v1h-3zM8 9h3v1h-3zM7 10h3v1h-3zM6 11h3v1h-3zM5 12h3v1h-3zM5 13h2v1h-2z"/></svg>
   </div>
 </div>
 </template>
@@ -26,14 +21,16 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
 
 .side-menu .simple-button {
-  cursor: pointer;
-  user-select: none;
   display: flex;
   line-height: 2em;
 
-  padding: 0 0.5em;
+  margin: 0 0 4px 0;
+  padding: 0 0.5em $ore-strip 0.5em;
+
+  @include ore-button;
 
   > .label {
     flex-grow: 1;
@@ -43,12 +40,17 @@ export default {
     text-overflow: ellipsis;
   }
 
-  &:hover {
-    background-color: var(--theme-bg-hover);
+  &.active {
+    @include ore-button-accent;
+
+    > .submenu-icon > svg {
+      fill: var(--ore-accent-fg);
+    }
   }
 
-  &.active {
-    background-color: var(--theme-bg-light);
+  &:active {
+    padding-top: 2px;
+    padding-bottom: $ore-strip - 2px;
   }
 
   > .submenu-icon {
@@ -59,31 +61,16 @@ export default {
 
     margin-right: -0.5em;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     > svg {
-      fill: var(--theme-fg-light);
-
-      path:nth-child(1) {
-        transform-origin: 15px 9px;
-        transform: translate(0, 10px) rotate(-30deg);
-      }
-      path:nth-child(2) {
-        transform-origin: 15px 21px;
-        transform: translate(0, -10px) rotate(30deg);
-      }
-
-      transform: scale(0.75);
-    }
-  }
-
-  &:active {
-    background-color: var(--theme-fg-light);
-    color: var(--theme-bg);
-
-
-    > .submenu-icon > svg {
-      fill: var(--theme-bg-light);
+      display: block;
+      width: 32px;
+      height: 32px;
+      fill: var(--theme-fg);
     }
   }
 }
-
 </style>

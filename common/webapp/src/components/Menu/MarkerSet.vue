@@ -19,12 +19,7 @@
     <div class="open-menu-button"
          :class="{active: active}"
          @click="more($event)">
-      <svg viewBox="0 0 30 30">
-        <path d="M25.004,9.294c0,0.806-0.75,1.46-1.676,1.46H6.671c-0.925,0-1.674-0.654-1.674-1.46l0,0
-	c0-0.807,0.749-1.461,1.674-1.461h16.657C24.254,7.833,25.004,8.487,25.004,9.294L25.004,9.294z"/>
-        <path d="M25.004,20.706c0,0.807-0.75,1.461-1.676,1.461H6.671c-0.925,0-1.674-0.654-1.674-1.461l0,0
-	c0-0.807,0.749-1.461,1.674-1.461h16.657C24.254,19.245,25.004,19.899,25.004,20.706L25.004,20.706z"/>
-      </svg>
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M5 2h2v1h-2zM5 3h3v1h-3zM6 4h3v1h-3zM7 5h3v1h-3zM8 6h3v1h-3zM9 7h3v1h-3zM9 8h3v1h-3zM8 9h3v1h-3zM7 10h3v1h-3zM6 11h3v1h-3zM5 12h3v1h-3zM5 13h2v1h-2z"/></svg>
     </div>
   </div>
 </template>
@@ -85,37 +80,31 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/scss/variables.scss";
+
 .side-menu .marker-set {
   display: flex;
   user-select: none;
 
-  line-height: 1em;
+  line-height: 1.2em;
 
-  margin: 0.5em 0;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  margin: 0 0 4px 0;
 
   > .info {
     flex-grow: 1;
-    cursor: pointer;
+    min-width: 0;
 
-    padding: 0.5em;
+    padding: 0.5em 0.5em calc(0.5em + #{$ore-strip}) 0.5em;
 
-    &:hover {
-      background-color: var(--theme-bg-hover);
-    }
+    @include ore-button;
 
     > .marker-set-switch {
       position: relative;
 
       .label {
-        margin: 0 2.5em 0 0;
+        margin: 0 3em 0 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       > .switch {
@@ -134,54 +123,35 @@ export default {
         &:not(:first-child) {
           margin-left: 0.5em;
           padding-left: 0.5em;
-          border-left: solid 1px var(--theme-bg-light);
+          border-left: solid $ore-border-width var(--ore-border);
         }
       }
     }
   }
 
   > .open-menu-button {
+    position: relative;
     width: 2em;
+    flex-shrink: 0;
+    margin-left: -$ore-border-width;
 
     &.active {
-      cursor: pointer;
-
-      &:hover {
-        background-color: var(--theme-bg-hover);
-      }
+      @include ore-button;
 
       > svg {
-        position: relative;
-        fill: var(--theme-fg-light);
+        position: absolute;
+        fill: var(--theme-fg);
 
-        top: 50%;
-        transform: translate(0, -50%) scale(0.75);
-
-        path:nth-child(1) {
-          transform-origin: 15px 9px;
-          transform: translate(0, 10px) rotate(-30deg);
-        }
-
-        path:nth-child(2) {
-          transform-origin: 15px 21px;
-          transform: translate(0, -10px) rotate(30deg);
-        }
-      }
-
-      &:active {
-        background-color: var(--theme-fg-light);
-        color: var(--theme-bg);
-
-        > svg {
-          fill: var(--theme-bg-light);
-        }
+        top: calc(50% - #{$ore-strip * 0.5});
+        width: 32px;
+        height: 32px;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
 
     &:not(.active) {
-      svg {
-        display: none;
-      }
+      display: none;
     }
   }
 }

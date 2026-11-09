@@ -1,15 +1,6 @@
 <template>
   <SvgButton class="menu-button" :class="{close: close, back: back}">
-    <svg viewBox="0 0 30 30">
-      <g>
-        <path d="M25.004,9.294c0,0.806-0.75,1.46-1.676,1.46H6.671c-0.925,0-1.674-0.654-1.674-1.46l0,0
-    c0-0.807,0.749-1.461,1.674-1.461h16.657C24.254,7.833,25.004,8.487,25.004,9.294L25.004,9.294z"/>
-        <path d="M25.004,15c0,0.807-0.75,1.461-1.676,1.461H6.671c-0.925,0-1.674-0.654-1.674-1.461l0,0
-    c0-0.807,0.749-1.461,1.674-1.461h16.657C24.254,13.539,25.004,14.193,25.004,15L25.004,15z"/>
-        <path d="M25.004,20.706c0,0.807-0.75,1.461-1.676,1.461H6.671c-0.925,0-1.674-0.654-1.674-1.461l0,0
-    c0-0.807,0.749-1.461,1.674-1.461h16.657C24.254,19.245,25.004,19.899,25.004,20.706L25.004,20.706z"/>
-      </g>
-    </svg>
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path class="icon-menu" d="M2 3h12v1h-12zM2 4h12v1h-12zM2 7h12v1h-12zM2 8h12v1h-12zM2 11h12v1h-12zM2 12h12v1h-12z"/><path class="icon-close" d="M2 2h2v1h-2zM12 2h2v1h-2zM2 3h3v1h-3zM11 3h3v1h-3zM3 4h3v1h-3zM10 4h3v1h-3zM4 5h3v1h-3zM9 5h3v1h-3zM5 6h6v1h-6zM6 7h4v1h-4zM6 8h4v1h-4zM5 9h6v1h-6zM4 10h3v1h-3zM9 10h3v1h-3zM3 11h3v1h-3zM10 11h3v1h-3zM2 12h3v1h-3zM11 12h3v1h-3zM2 13h2v1h-2zM12 13h2v1h-2z"/><path class="icon-back" d="M9 2h2v1h-2zM8 3h3v1h-3zM7 4h3v1h-3zM6 5h3v1h-3zM5 6h3v1h-3zM4 7h3v1h-3zM4 8h3v1h-3zM5 9h3v1h-3zM6 10h3v1h-3zM7 11h3v1h-3zM8 12h3v1h-3zM9 13h2v1h-2z"/></svg>
   </SvgButton>
 </template>
 
@@ -26,59 +17,27 @@ export default {
 </script>
 
 <style lang="scss">
+  // pixel icons: hamburger / close / back are swapped instead of animated
   .menu-button {
-
     svg {
-      g {
-        transform-origin: center;
-        transition: transform 0.3s;
-      }
-      path {
-        transition: transform 0.3s, fill 0.3s;
-        transform: translate(0, 0) rotate(0);
-
-        &:nth-child(1) {
-          transform-origin: 15px 9px;
-        }
-
-        &:nth-child(2) {
-          transform-origin: 15px 15px;
-        }
-
-        &:nth-child(3) {
-          transform-origin: 15px 21px;
-        }
+      .icon-close, .icon-back {
+        display: none;
       }
     }
 
     &.close {
       svg {
-        path:nth-child(1) {
-          transform: translate(0, 5.75px) rotate(45deg);
-        }
-        path:nth-child(2) {
-          transform: translate(-100%, 0) rotate(0);
-        }
-        path:nth-child(3) {
-          transform: translate(0, -5.75px) rotate(-45deg);
+        .icon-menu {
+          display: none;
         }
       }
 
-      &.back {
-        svg {
-          g {
-            transform: scale(0.75);
-          }
-          path:nth-child(1) {
-            transform: translate(0, 10px) rotate(30deg);
-          }
-          path:nth-child(2) {
-            transform: translate(-150%, 0) rotate(0);
-          }
-          path:nth-child(3) {
-            transform: translate(0, -10px) rotate(-30deg);
-          }
-        }
+      &:not(.back) svg .icon-close {
+        display: inline;
+      }
+
+      &.back svg .icon-back {
+        display: inline;
       }
     }
   }

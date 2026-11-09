@@ -2,30 +2,18 @@
   <div id="ff-mobile-controls" :class="{disabled: !enabled}">
     <div class="move-fields">
       <div class="button up-button" @touchstart.passive="forward = 1; forwardPointer = $event.changedTouches[0].identifier; $event.preventDefault();">
-        <svg viewBox="0 0 100 50">
-          <path d="M6.75,48.375c-2.75,0-3.384-1.565-1.409-3.479L46.41,5.104c1.975-1.914,5.207-1.913,7.182,0l41.067,39.792
-            c1.975,1.914,1.341,3.479-1.409,3.479H6.75z"/>
-        </svg>
+        <svg viewBox="0 0 16 8" shape-rendering="crispEdges"><path d="M7 0h2v1h-2zM6 1h4v1h-4zM5 2h6v1h-6zM4 3h8v1h-8zM3 4h10v1h-10zM2 5h12v1h-12zM1 6h14v1h-14zM0 7h16v1h-16z"/></svg>
       </div>
       <div class="button down-button" @touchstart.passive="forward = -1; forwardPointer = $event.changedTouches[0].identifier; $event.preventDefault();">
-        <svg viewBox="0 0 100 50" class="down">
-          <path d="M6.75,48.375c-2.75,0-3.384-1.565-1.409-3.479L46.41,5.104c1.975-1.914,5.207-1.913,7.182,0l41.067,39.792
-            c1.975,1.914,1.341,3.479-1.409,3.479H6.75z"/>
-        </svg>
+        <svg viewBox="0 0 16 8" shape-rendering="crispEdges" class="down"><path d="M7 0h2v1h-2zM6 1h4v1h-4zM5 2h6v1h-6zM4 3h8v1h-8zM3 4h10v1h-10zM2 5h12v1h-12zM1 6h14v1h-14zM0 7h16v1h-16z"/></svg>
       </div>
     </div>
     <div class="height-fields">
       <div class="button up-button" @touchstart.passive="up = 1; upPointer = $event.changedTouches[0].identifier; $event.preventDefault();">
-        <svg viewBox="0 0 100 50">
-          <path d="M6.75,48.375c-2.75,0-3.384-1.565-1.409-3.479L46.41,5.104c1.975-1.914,5.207-1.913,7.182,0l41.067,39.792
-            c1.975,1.914,1.341,3.479-1.409,3.479H6.75z"/>
-        </svg>
+        <svg viewBox="0 0 16 8" shape-rendering="crispEdges"><path d="M7 0h2v1h-2zM6 1h4v1h-4zM5 2h6v1h-6zM4 3h8v1h-8zM3 4h10v1h-10zM2 5h12v1h-12zM1 6h14v1h-14zM0 7h16v1h-16z"/></svg>
       </div>
       <div class="button down-button" @touchstart.passive="up = -1; upPointer = $event.changedTouches[0].identifier; $event.preventDefault();">
-        <svg viewBox="0 0 100 50" class="down">
-          <path d="M6.75,48.375c-2.75,0-3.384-1.565-1.409-3.479L46.41,5.104c1.975-1.914,5.207-1.913,7.182,0l41.067,39.792
-            c1.975,1.914,1.341,3.479-1.409,3.479H6.75z"/>
-        </svg>
+        <svg viewBox="0 0 16 8" shape-rendering="crispEdges" class="down"><path d="M7 0h2v1h-2zM6 1h4v1h-4zM5 2h6v1h-6zM4 3h8v1h-8zM3 4h10v1h-10zM2 5h12v1h-12zM1 6h14v1h-14zM0 7h16v1h-16z"/></svg>
       </div>
     </div>
   </div>
@@ -98,10 +86,12 @@ export default {
     pointer-events: auto;
 
     svg {
-      fill: var(--theme-bg);
+      fill: var(--ore-btn);
+      filter: drop-shadow(0 2px 0 var(--ore-border)) drop-shadow(0 -2px 0 var(--ore-border));
+      overflow: visible;
 
       &:active {
-        fill: var(--theme-bg-light);
+        fill: var(--ore-accent);
         opacity: 0.8;
       }
 
